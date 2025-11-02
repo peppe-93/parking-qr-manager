@@ -1,0 +1,177 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "🔨 Build APK Debug",
+            "type": "shell",
+            "command": "./gradlew",
+            "args": [
+                "assembleDebug"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Compila APK Debug (per test)",
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiGreen"
+            }
+        },
+        {
+            "label": "🚀 Build APK Release",
+            "type": "shell",
+            "command": "./gradlew",
+            "args": [
+                "assembleRelease"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Compila APK Release (per produzione)",
+            "icon": {
+                "id": "rocket",
+                "color": "terminal.ansiBlue"
+            }
+        },
+        {
+            "label": "🧹 Clean Build",
+            "type": "shell",
+            "command": "./gradlew",
+            "args": [
+                "clean"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Pulisce i file di build precedenti",
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "🔄 Clean + Build APK",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "🧹 Clean Build",
+                "🔨 Build APK Debug"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Pulisce e ricompila tutto da zero",
+            "icon": {
+                "id": "sync",
+                "color": "terminal.ansiMagenta"
+            }
+        },
+        {
+            "label": "📱 Install on Device",
+            "type": "shell",
+            "command": "./gradlew",
+            "args": [
+                "installDebug"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Installa APK su dispositivo Android collegato via USB",
+            "icon": {
+                "id": "device-mobile",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
+            "label": "🔍 Check Dependencies",
+            "type": "shell",
+            "command": "./gradlew",
+            "args": [
+                "dependencies"
+            ],
+            "group": "none",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Mostra tutte le dipendenze del progetto"
+        },
+        {
+            "label": "📂 Open APK Folder",
+            "type": "shell",
+            "command": "explorer",
+            "args": [
+                "app/build/outputs/apk/debug"
+            ],
+            "windows": {
+                "command": "explorer",
+                "args": [
+                    "app\\build\\outputs\\apk\\debug"
+                ]
+            },
+            "linux": {
+                "command": "xdg-open",
+                "args": [
+                    "app/build/outputs/apk/debug"
+                ]
+            },
+            "osx": {
+                "command": "open",
+                "args": [
+                    "app/build/outputs/apk/debug"
+                ]
+            },
+            "group": "none",
+            "presentation": {
+                "echo": false,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "detail": "Apre la cartella contenente l'APK compilato"
+        }
+    ]
+}

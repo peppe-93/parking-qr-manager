@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Esporta e Gestisci Dati"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#1976D2"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/textExportInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Caricamento informazioni..."
+        android:textSize="16sp"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/btnExportCSV"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="📤 Esporta in CSV"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnDeleteOldData"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="🗑️ Elimina Dati Vecchi (>30gg)"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#F44336" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="📝 Note:\n\n• I file CSV verranno salvati nella cartella Downloads\n• Dopo l'esportazione puoi condividere i file via email o altre app\n• Elimina i dati vecchi periodicamente per liberare spazio"
+        android:textSize="14sp"
+        android:lineSpacingExtra="4dp"
+        android:background="#FFFFFF"
+        android:padding="16dp"
+        android:layout_marginTop="32dp" />
+
+</LinearLayout>

@@ -1,0 +1,155 @@
+================================================================================
+                PARKING QR MANAGER - APPLICAZIONE ANDROID
+                        Gestione Parcheggi Privati
+================================================================================
+
+CONTENUTO PACCHETTO:
+-------------------
+Questo pacchetto contiene tutti i file sorgente necessari per compilare
+l'applicazione Android "Parking QR Manager".
+
+FILE PRINCIPALI:
+- AndroidManifest.xml          : Configurazione app e permessi
+- build.gradle                 : Configurazione dipendenze
+- java/                        : Codice sorgente Java (6 classi)
+- res/                         : Resources (layout, colors, strings)
+- README.md                    : Documentazione completa (in inglese)
+- GUIDA_COMPILAZIONE.md        : Istruzioni dettagliate compilazione
+- MANUALE_OPERATIVO.md         : Esempi pratici utilizzo
+- verifica_struttura.sh        : Script verifica file
+
+CARATTERISTICHE PRINCIPALI:
+---------------------------
+✓ Generazione QR Code sicuri con prefisso aziendale personalizzabile
+✓ Scansione QR Code offline (senza connessione dati)
+✓ Gestione 4 aree colorate (Verde, Rosso, Giallo, Blu)
+✓ 100 postazioni per area
+✓ Rilevamento automatico QR Code duplicati
+✓ Possibilità di segnare postazioni vuote
+✓ Database SQLite locale
+✓ Export dati in formato CSV
+✓ Gestione sessioni di scansione
+
+REQUISITI:
+----------
+- Android Studio (ultima versione)
+- Android SDK 24 o superiore
+- JDK 8 o superiore
+- Connessione internet (solo per prima compilazione)
+
+INIZIO RAPIDO:
+--------------
+1. Installa Android Studio da: https://developer.android.com/studio
+
+2. Crea la struttura corretta del progetto:
+   
+   MioParcheggio/
+   ├── app/
+   │   ├── build.gradle
+   │   └── src/main/
+   │       ├── AndroidManifest.xml
+   │       ├── java/com/parking/qrmanager/
+   │       └── res/
+   ├── build.gradle (rinomina build.gradle.root)
+   └── settings.gradle (da creare)
+
+3. Copia tutti i file nelle posizioni corrette
+
+4. Apri il progetto in Android Studio
+
+5. Attendi sync Gradle
+
+6. Build → Build APK
+
+DOCUMENTI DA LEGGERE (in ordine):
+----------------------------------
+1. GUIDA_COMPILAZIONE.md      ← INIZIA DA QUI per compilare l'APK
+2. README.md                  ← Documentazione tecnica completa
+3. MANUALE_OPERATIVO.md       ← Esempi pratici di utilizzo
+
+VERIFICA INSTALLAZIONE:
+-----------------------
+Esegui lo script di verifica:
+$ bash verifica_struttura.sh
+
+Questo controllerà che tutti i file necessari siano presenti.
+
+STRUTTURA PARCHEGGIO:
+---------------------
+Il parcheggio è diviso in 4 aree:
+- 🟢 VERDE (100 posti)
+- 🔴 ROSSO (100 posti)  
+- 🟡 GIALLO (100 posti)
+- 🔵 BLU (100 posti)
+
+Ogni azienda cliente acquista un numero di posti in un'area specifica.
+Ogni veicolo autorizzato ha un QR Code unico applicato.
+
+FLUSSO DI LAVORO:
+-----------------
+1. AMMINISTRATORE: Genera QR Code per ogni veicolo autorizzato
+   → App: "Genera QR Code" → Seleziona azienda → Genera → Stampa → Applica su veicolo
+
+2. OPERATORE: Controlla giornalmente ogni area
+   → App: "Scansiona Area" → Seleziona area → Inserisci numero postazione
+   → Scansiona QR Code di ogni veicolo presente
+   → Segna postazioni vuote
+   → L'app rileva automaticamente QR duplicati (irregolarità)
+
+3. GESTIONE: Export periodico dei dati
+   → App: "Esporta Dati" → Export CSV → Analizza in Excel
+   → Elimina dati vecchi per liberare memoria
+
+FUNZIONALITÀ CHIAVE:
+--------------------
+★ RILEVAMENTO DUPLICATI:
+  Se lo stesso QR Code viene scansionato 2 volte nella stessa sessione,
+  l'app mostra un alert con l'area e postazione della prima scansione.
+  Questo permette di identificare veicoli non autorizzati con QR duplicati.
+
+★ FUNZIONAMENTO OFFLINE:
+  L'app NON richiede connessione dati. Tutto è salvato localmente.
+  Perfetto per parcheggi sotterranei o zone senza copertura.
+
+★ SICUREZZA QR CODE:
+  I QR Code generati contengono:
+  - Prefisso aziendale personalizzabile
+  - Codice random sicuro (12 caratteri)
+  - Timestamp per unicità assoluta
+  
+  Esempio: AZIENDA_ALFA_K7M9P2N4X1Q5_18A3B5C7D9E
+
+SUPPORTO:
+---------
+Per problemi di compilazione:
+→ Leggi GUIDA_COMPILAZIONE.md sezione "Risoluzione Problemi"
+
+Per dubbi sull'utilizzo:
+→ Leggi MANUALE_OPERATIVO.md con esempi pratici
+
+Per problemi tecnici:
+→ Controlla la documentazione Android: https://developer.android.com
+
+LICENZA:
+--------
+Codice proprietario. Tutti i diritti riservati.
+Uso autorizzato solo per il cliente che ha commissionato l'app.
+
+CONTATTI:
+---------
+[Inserire informazioni di contatto del supporto]
+
+================================================================================
+                    BUONA COMPILAZIONE E BUON UTILIZZO!
+================================================================================
+
+NOTE FINALI:
+-----------
+- Testa sempre l'app su dispositivi reali, non solo emulatore
+- Verifica i permessi (Camera e Storage) durante l'installazione
+- Esegui backup regolari dei dati esportati
+- Aggiorna periodicamente i QR Code fisici se danneggiati
+
+Per iniziare subito: apri GUIDA_COMPILAZIONE.md
+
+================================================================================

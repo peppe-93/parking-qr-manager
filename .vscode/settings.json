@@ -1,0 +1,28 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "files.exclude": {
+        "**/.gradle": true,
+        "**/build": true,
+        "**/.idea": true,
+        "**/*.iml": true,
+        "**/.DS_Store": true
+    },
+    "search.exclude": {
+        "**/build": true,
+        "**/.gradle": true
+    },
+    "files.watcherExclude": {
+        "**/.gradle/**": true,
+        "**/build/**": true
+    },
+    "terminal.integrated.env.windows": {
+        "JAVA_HOME": "${env:JAVA_HOME}"
+    },
+    "terminal.integrated.env.linux": {
+        "JAVA_HOME": "${env:JAVA_HOME}"
+    },
+    "terminal.integrated.env.osx": {
+        "JAVA_HOME": "${env:JAVA_HOME}"
+    }
+}

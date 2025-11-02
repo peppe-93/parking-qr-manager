@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generazione QR Code in Blocco"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#1976D2"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/textCompanyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Azienda: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#4CAF50"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quantità QR Code da generare:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Es: 30"
+        android:inputType="number"
+        android:background="@android:drawable/edit_text"
+        android:padding="12dp"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/btnGenerateBatch"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="⚡ Genera QR Codes"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginBottom="16dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        android:textColor="#4CAF50"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/btnExportPDF"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="📄 Esporta PDF Stampabile"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#2196F3"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="📝 Informazioni:\n\n• I QR Code verranno generati automaticamente\n• Ogni QR Code è unico e sicuro\n• Tutti i codici vengono salvati nel database\n• Il PDF conterrà 6 QR Code per pagina (formato A4)\n• Puoi stampare o condividere il PDF\n• Limite: max 100 QR Code per volta"
+        android:textSize="14sp"
+        android:lineSpacingExtra="4dp"
+        android:background="#FFFFFF"
+        android:padding="16dp"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

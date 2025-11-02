@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Parking QR Manager</string>
+    <string name="generate_qr">Genera QR Code</string>
+    <string name="scan_area">Scansiona Area</string>
+    <string name="history">Storico Scansioni</string>
+    <string name="export">Esporta Dati</string>
+</resources>

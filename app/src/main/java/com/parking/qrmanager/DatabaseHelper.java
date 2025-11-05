@@ -13,7 +13,7 @@ import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "ParkingDB";
-    private static final int DATABASE_VERSION = 2; // bump for revoke/path/hmac
+    private static final int DATABASE_VERSION = 2;
 
     // Tables
     private static final String TABLE_QR_CODES = "qr_codes";
@@ -24,9 +24,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_QR_CODE = "qr_code";
     private static final String COL_COMPANY_NAME = "company_name";
     private static final String COL_DATE_CREATED = "date_created";
-    private static final String COL_IMAGE_PATH = "image_path"; // new
-    private static final String COL_IS_REVOKED = "is_revoked";  // new
-    private static final String COL_HMAC = "hmac";              // new
+    private static final String COL_IMAGE_PATH = "image_path";
+    private static final String COL_IS_REVOKED = "is_revoked";
+    private static final String COL_HMAC = "hmac";
 
     // scans columns
     private static final String COL_SCAN_ID = "scan_id";
@@ -44,17 +44,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_QR_CODES + " (" +
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_QR_CODES + " (" +
                 COL_QR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_QR_CODE + " TEXT UNIQUE NOT NULL, " +
                 COL_COMPANY_NAME + " TEXT NOT NULL, " +
                 COL_DATE_CREATED + " TEXT NOT NULL, " +
                 COL_IMAGE_PATH + " TEXT, " +
                 COL_IS_REVOKED + " INTEGER DEFAULT 0, " +
-                COL_HMAC + " TEXT)"
-        );
+                COL_HMAC + " TEXT)");
 
-        db.execSQL("CREATE TABLE " + TABLE_SCANS + " (" +
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SCANS + " (" +
                 COL_SCAN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_SCAN_QR_CODE + " TEXT NOT NULL, " +
                 COL_SCAN_AREA + " TEXT NOT NULL, " +
@@ -62,9 +61,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_SCAN_SESSION + " TEXT NOT NULL, " +
                 COL_SCAN_DATE + " TEXT NOT NULL, " +
                 COL_SCAN_TIME + " TEXT NOT NULL, " +
-                COL_IS_EMPTY + " INTEGER DEFAULT 0)"
-        );
+                COL_IS_EMPTY + " INTEGER DEFAULT 0)");
+
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_qr_unique ON " + TABLE_QR_CODES + "(" + COL_QR_CODE + ")");
+        db.execSQL("CREATE INDEX IF NOT EXISTS idx_scans_session ON " + TABLE_SCANS + "(" + COL_SCAN_SESSION + ")");
     }
 
     @Override
@@ -76,6 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // --- Existing APIs ---
     public long insertQRCode(String qrCode, String companyName) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -129,16 +130,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return h;
     }
 
-    public String getQRCodeImagePath(String qrCode) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT " + COL_IMAGE_PATH + " FROM " + TABLE_QR_CODES + " WHERE " + COL_QR_CODE + "=? LIMIT 1", new String[]{qrCode});
-        String p = null;
-        if (cursor.moveToFirst()) p = cursor.getString(0);
-        cursor.close();
-        db.close();
-        return p;
-    }
-
     public long insertScan(String qrCode, String area, int spotNumber, String sessionId, boolean isEmpty) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -182,7 +173,51 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // Utilities (unchanged)
+    // --- Legacy-compatible APIs for History/Export ---
+    public static class Scan {
+        public int id;
+        public String qrCode;
+        public String area;
+        public int spotNumber;
+        public String sessionId;
+        public String date;
+        public String time;
+        public boolean isEmpty;
+        public Scan(int id, String qrCode, String area, int spotNumber,
+                    String sessionId, String date, String time, boolean isEmpty) {
+            this.id = id; this.qrCode = qrCode; this.area = area; this.spotNumber = spotNumber;
+            this.sessionId = sessionId; this.date = date; this.time = time; this.isEmpty = isEmpty;
+        }
+    }
+
+    public List<Scan> getAllScans() {
+        List<Scan> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String q = "SELECT " + COL_SCAN_ID + "," + COL_SCAN_QR_CODE + "," + COL_SCAN_AREA + "," + COL_SCAN_SPOT + "," +
+                COL_SCAN_SESSION + "," + COL_SCAN_DATE + "," + COL_SCAN_TIME + "," + COL_IS_EMPTY +
+                " FROM " + TABLE_SCANS + " ORDER BY " + COL_SCAN_DATE + " DESC, " + COL_SCAN_TIME + " DESC";
+        Cursor c = db.rawQuery(q, null);
+        if (c.moveToFirst()) {
+            do {
+                list.add(new Scan(
+                        c.getInt(0), c.getString(1), c.getString(2), c.getInt(3),
+                        c.getString(4), c.getString(5), c.getString(6), c.getInt(7) == 1
+                ));
+            } while (c.moveToNext());
+        }
+        c.close();
+        db.close();
+        return list;
+    }
+
+    public int deleteOldScans(String beforeDate) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int rows = db.delete(TABLE_SCANS, COL_SCAN_DATE + " < ?", new String[]{beforeDate});
+        db.close();
+        return rows;
+    }
+
+    // Utilities
     private String getCurrentDateTime() { return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date()); }
     private String getCurrentDate() { return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()); }
     private String getCurrentTime() { return new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()); }

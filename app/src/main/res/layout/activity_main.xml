@@ -20,7 +20,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardGenerateQR"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:minHeight="120dp"
         android:layout_marginBottom="16dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
@@ -29,16 +30,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="📱"
-                android:textSize="32sp" />
+                android:textSize="28sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -46,14 +47,15 @@
                 android:text="Genera QR Code"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="10dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardScanArea"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:minHeight="120dp"
         android:layout_marginBottom="16dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
@@ -62,16 +64,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="📷"
-                android:textSize="32sp" />
+                android:textSize="28sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,14 +81,15 @@
                 android:text="Scansiona Area"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="10dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardHistory"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:minHeight="120dp"
         android:layout_marginBottom="16dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
@@ -95,16 +98,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="📋"
-                android:textSize="32sp" />
+                android:textSize="28sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -112,14 +115,15 @@
                 android:text="Storico Scansioni"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="10dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardExport"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:minHeight="120dp"
         android:layout_marginBottom="16dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
@@ -128,16 +132,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="💾"
-                android:textSize="32sp" />
+                android:textSize="28sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -145,14 +149,15 @@
                 android:text="Esporta Dati"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="10dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardQrLibrary"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:minHeight="120dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         android:clickable="true"
@@ -160,16 +165,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="📚"
-                android:textSize="32sp" />
+                android:textSize="28sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -177,7 +182,7 @@
                 android:text="Libreria QR"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="10dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

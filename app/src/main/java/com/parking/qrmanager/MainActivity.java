@@ -1,57 +1,33 @@
 package com.parking.qrmanager;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        // Card Genera QR Code
+
         CardView cardGenerate = findViewById(R.id.cardGenerateQR);
-        cardGenerate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GenerateQRActivity.class);
-                startActivity(intent);
-            }
-        });
-        
-        // Card Scansiona Area
+        cardGenerate.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, GenerateQRActivity.class)));
+
         CardView cardScan = findViewById(R.id.cardScanArea);
-        cardScan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ScanActivity.class);
-                startActivity(intent);
-            }
-        });
-        
-        // Card Storico
+        cardScan.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScanActivity.class)));
+
         CardView cardHistory = findViewById(R.id.cardHistory);
-        cardHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-                startActivity(intent);
-            }
-        });
-        
-        // Card Esporta Dati
+        cardHistory.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, HistoryActivity.class)));
+
         CardView cardExport = findViewById(R.id.cardExport);
-        cardExport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ExportActivity.class);
-                startActivity(intent);
-            }
-        });
+        cardExport.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ExportActivity.class)));
+
+        // Nuova card Libreria QR
+        CardView cardLibrary = findViewById(R.id.cardQrLibrary);
+        if (cardLibrary != null) {
+            cardLibrary.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, QrLibraryActivity.class)));
+        }
     }
 }

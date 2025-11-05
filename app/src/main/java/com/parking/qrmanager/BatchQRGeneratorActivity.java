@@ -2,9 +2,9 @@ package com.parking.qrmanager;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.print.PrintManager;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,14 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.zxing.WriterException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-// NOTE: This is a focused patch of the existing class to replace exportToPDF() with PrintManager
 public class BatchQRGeneratorActivity extends AppCompatActivity {
     private TextView textCompanyName; private EditText editQuantity; private Button btnGenerateBatch; private Button btnExportPDF; private ProgressBar progressBar; private TextView textStatus;
     private String companyName; private DatabaseHelper dbHelper; private List<QRCodeData> generatedQRCodes;
@@ -56,7 +54,7 @@ public class BatchQRGeneratorActivity extends AppCompatActivity {
                 final int current = i + 1;
                 String uniqueCode = generateSecureCode(); String qrCode = companyName + "_" + uniqueCode;
                 try {
-                    Bitmap qrBitmap = GenerateQRBitmapUtil.generateQRCodeWithText(qrCode, 400, 480);
+                    Bitmap qrBitmap = QRBitmapUtil.generateQRCodeWithText(qrCode, 400, 480);
                     generatedQRCodes.add(new QRCodeData(qrCode, qrBitmap));
                     dbHelper.insertQRCode(qrCode, companyName);
                     runOnUiThread(() -> textStatus.setText("Generati: " + current + " / " + quantity));
@@ -82,6 +80,5 @@ public class BatchQRGeneratorActivity extends AppCompatActivity {
                 new BatchQRPrintDocumentAdapter(items, companyName), new PrintAttributes.Builder().build());
     }
 
-    // data holder
     private static class QRCodeData { String code; Bitmap bitmap; QRCodeData(String code, Bitmap bitmap) { this.code = code; this.bitmap = bitmap; } }
 }

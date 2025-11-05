@@ -92,11 +92,13 @@
             android:scaleType="fitCenter"
             android:layout_marginBottom="16dp" />
 
+        <!-- Prima riga di pulsanti -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginBottom="12dp">
 
             <Button
                 android:id="@+id/btnSaveQR"
@@ -106,7 +108,18 @@
                 android:text="💾 Salva"
                 android:textSize="14sp"
                 android:backgroundTint="#FF9800"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/btnPrintQR"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="🖨️ Stampa"
+                android:textSize="14sp"
+                android:backgroundTint="#795548"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp" />
 
             <Button
                 android:id="@+id/btnShareQR"
@@ -116,13 +129,13 @@
                 android:text="📤 Condividi"
                 android:textSize="14sp"
                 android:backgroundTint="#9C27B0"
-                android:layout_marginStart="8dp" />
+                android:layout_marginStart="6dp" />
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="💡 Suggerimento: Usa 'Genera in Blocco' per creare e stampare multipli QR Code in formato PDF"
+            android:text="💡 Suggerimenti:\n• Usa 'Salva' per salvare nella galleria\n• Usa 'Stampa' per stampare direttamente\n• Usa 'Genera in Blocco' per multipli QR Code in formato PDF"
             android:textSize="12sp"
             android:textColor="#666666"
             android:background="#E3F2FD"

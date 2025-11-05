@@ -80,12 +80,24 @@ public class ScanActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radioButton = findViewById(checkedId);
-                selectedArea = radioButton.getText().toString();
-                // Reset alla postazione 1 quando si cambia area
-                currentSpotNumber = 1;
-                updateDisplay();
-                // Configura il numero totale di postazioni per area
-                configureTotalSpotsForArea(selectedArea);
+                if (radioButton != null) {
+                    String areaText = radioButton.getText().toString();
+                    // Estrai il nome dell'area dal testo (es: "🟢 Area A (50 postazioni)" -> "Area A")
+                    if (areaText.contains("Area A")) {
+                        selectedArea = "Area A";
+                    } else if (areaText.contains("Area B")) {
+                        selectedArea = "Area B";
+                    } else if (areaText.contains("Area C")) {
+                        selectedArea = "Area C";
+                    } else if (areaText.contains("Area D")) {
+                        selectedArea = "Area D";
+                    }
+                    // Reset alla postazione 1 quando si cambia area
+                    currentSpotNumber = 1;
+                    updateDisplay();
+                    // Configura il numero totale di postazioni per area
+                    configureTotalSpotsForArea(selectedArea);
+                }
             }
         });
 
@@ -198,7 +210,7 @@ public class ScanActivity extends AppCompatActivity {
         updateDisplay();
         startScanning();
 
-        Toast.makeText(this, "Scansione sequenziale avviata dall'Area " + selectedArea + ", Postazione 1", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Scansione sequenziale avviata dall'" + selectedArea + ", Postazione 1", Toast.LENGTH_LONG).show();
     }
 
     private void setSequentialMode(boolean enabled) {
@@ -303,7 +315,7 @@ public class ScanActivity extends AppCompatActivity {
     private void showAreaCompletedDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Area Completata!");
-        builder.setMessage("Hai completato la scansione dell'Area " + selectedArea + "\n\n" +
+        builder.setMessage("Hai completato la scansione dell'" + selectedArea + "\n\n" +
                           "Postazioni scansionate: " + scannedCount + " di " + totalSpotsInArea + "\n\n" +
                           "Vuoi iniziare con un'altra area?");
         builder.setPositiveButton("Nuova Area", new DialogInterface.OnClickListener() {
@@ -328,7 +340,7 @@ public class ScanActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Conferma Postazione Vuota");
         builder.setMessage("Confermi che la postazione " + currentSpotNumber +
-                          " nell'area " + selectedArea + " è vuota?");
+                          " nell'" + selectedArea + " è vuota?");
         builder.setPositiveButton("Sì, Vuota", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

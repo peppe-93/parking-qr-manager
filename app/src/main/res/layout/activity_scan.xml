@@ -11,6 +11,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Informazioni Sessione -->
         <TextView
             android:id="@+id/textSessionInfo"
             android:layout_width="match_parent"
@@ -28,6 +29,32 @@
             android:text="Scansioni effettuate: 0"
             android:textSize="14sp"
             android:textColor="#4CAF50"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Progresso Scansione -->
+        <TextView
+            android:id="@+id/textProgressInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleziona un'area per iniziare"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:background="#E3F2FD"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Postazione Corrente -->
+        <TextView
+            android:id="@+id/textCurrentSpot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Postazione Corrente: 1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#E91E63"
+            android:gravity="center"
+            android:background="#FFF3E0"
+            android:padding="12dp"
             android:layout_marginBottom="16dp" />
 
         <TextView
@@ -42,67 +69,43 @@
             android:id="@+id/radioGroupArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginBottom="16dp">
 
             <RadioButton
-                android:id="@+id/radioGreen"
-                android:layout_width="0dp"
+                android:id="@+id/radioAreaA"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🟢 Verde"
-                android:textSize="14sp" />
+                android:text="🟢 Area A (50 postazioni)"
+                android:textSize="14sp"
+                android:padding="8dp" />
 
             <RadioButton
-                android:id="@+id/radioRed"
-                android:layout_width="0dp"
+                android:id="@+id/radioAreaB"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🔴 Rosso"
-                android:textSize="14sp" />
+                android:text="🔴 Area B (75 postazioni)"
+                android:textSize="14sp"
+                android:padding="8dp" />
+
+            <RadioButton
+                android:id="@+id/radioAreaC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🟡 Area C (100 postazioni)"
+                android:textSize="14sp"
+                android:padding="8dp" />
+
+            <RadioButton
+                android:id="@+id/radioAreaD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🔵 Area D (60 postazioni)"
+                android:textSize="14sp"
+                android:padding="8dp" />
         </RadioGroup>
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
-
-            <RadioButton
-                android:id="@+id/radioYellow"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🟡 Giallo"
-                android:textSize="14sp" />
-
-            <RadioButton
-                android:id="@+id/radioBlue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🔵 Blu"
-                android:textSize="14sp" />
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Numero Postazione (1-100):"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
-
-        <EditText
-            android:id="@+id/editSpotNumber"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Es: 1"
-            android:inputType="number"
-            android:background="@android:drawable/edit_text"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp" />
-
+        <!-- Scanner QR -->
         <com.journeyapps.barcodescanner.DecoratedBarcodeView
             android:id="@+id/barcodeView"
             android:layout_width="match_parent"
@@ -111,31 +114,57 @@
             android:layout_marginBottom="16dp"
             app:zxing_scanner_layout="@layout/custom_barcode_scanner" />
 
+        <!-- Pulsante Principale -->
         <Button
-            android:id="@+id/btnScanQR"
+            android:id="@+id/btnStartSequentialScan"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Scansiona QR Code"
+            android:text="Inizia Scansione Sequenziale"
             android:textSize="16sp"
             android:textStyle="bold"
             android:backgroundTint="#2196F3"
             android:layout_marginBottom="12dp" />
 
+        <!-- Controlli Sequenziali (visibili solo durante scansione) -->
         <Button
             android:id="@+id/btnMarkEmpty"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Segna Postazione Vuota"
+            android:text="⭕ Postazione Vuota"
             android:textSize="16sp"
             android:textStyle="bold"
             android:backgroundTint="#FF9800"
+            android:visibility="gone"
             android:layout_marginBottom="12dp" />
 
+        <Button
+            android:id="@+id/btnSkipSpot"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="➡️ Salta Postazione"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="#607D8B"
+            android:visibility="gone"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Inserimento Manuale (visibile solo quando non in modalità sequenziale) -->
+        <Button
+            android:id="@+id/btnManualSpotEntry"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="✏️ Vai a Postazione Specifica"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="#9C27B0"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Termina Sessione -->
         <Button
             android:id="@+id/btnEndSession"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Termina Sessione"
+            android:text="🏁 Termina Sessione"
             android:textSize="16sp"
             android:textStyle="bold"
             android:backgroundTint="#F44336" />

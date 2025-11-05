@@ -64,7 +64,7 @@
                     android:layout_height="36dp"
                     android:background="@android:color/transparent"
                     android:contentDescription="Stampa"
-                    android:src="@android:drawable/ic_print"/>
+                    android:src="@drawable/ic_print_black_24dp"/>
 
                 <ImageButton
                     android:id="@+id/btnShare"

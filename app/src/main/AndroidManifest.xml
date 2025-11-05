@@ -57,6 +57,12 @@
             android:label="Esporta Dati"
             android:parentActivityName=".MainActivity" />
 
+        <!-- Nuova activity Libreria QR -->
+        <activity
+            android:name=".QrLibraryActivity"
+            android:label="Libreria QR"
+            android:parentActivityName=".MainActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.parking.qrmanager.fileprovider"
@@ -67,7 +73,6 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!-- RIMOSSO servizio PrintService personalizzato per evitare errore android:exported -->
     </application>
 
 </manifest>
